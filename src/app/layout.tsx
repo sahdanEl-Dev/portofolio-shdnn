@@ -5,6 +5,7 @@ import Background from "@/components/background";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import MainContainer from "@/components/MainContainer";
+import ViewTracker from "@/components/ViewTracker";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
@@ -42,6 +43,7 @@ export default function RootLayout({
           <MainContainer>{children}</MainContainer>
           <Footer />
         </div>
+        <ViewTracker />
       </body>
     </html>
   );
