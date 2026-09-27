@@ -10,8 +10,24 @@ const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Muhammad Sahdan Ramadhan | Portfolio",
-  description: "Software engineer, photographer, and gamer.",
+  title: {
+    default: "Muhammad Sahdan Ramadhan — Portofolio",
+    template: "%s | Muhammad Sahdan Ramadhan",
+  },
+  description: "Portofolio Muhammad Sahdan Ramadhan — Software Engineer, Videographer & Gamer.",
+  metadataBase: new URL("https://portofolio-shdnn.vercel.app"),
+  openGraph: {
+    title: "Muhammad Sahdan Ramadhan",
+    description: "Portofolio Muhammad Sahdan Ramadhan — Software Engineer, Videographer & Gamer.",
+    url: "https://portofolio-shdnn.vercel.app",
+    siteName: "Portfolio Muhammad Sahdan Ramadhan",
+    images: ["/og-image.jpg"],
+    locale: "id_ID",
+    type: "website",
+  },
+  verification: {
+    google: "K5OeZ02El_pXDSKzmJrn_h5Fql9cCZ190E6NNxIWl4g",
+  },
 };
 
 export default function RootLayout({
