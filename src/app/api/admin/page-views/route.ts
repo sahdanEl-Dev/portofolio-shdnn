@@ -10,14 +10,16 @@ export async function GET(req: NextRequest) {
   const format =
     period === "day" ? "YYYY-MM-DD" : period === "year" ? "YYYY" : "YYYY-MM";
 
+  const groupExpr = sql`to_char(${pageViews.createdAt}, ${sql.raw(`'${format}'`)})`;
+
   const rows = await db
     .select({
-      label: sql<string>`to_char(${pageViews.createdAt}, ${format})`,
+      label: groupExpr.as("label"),
       count: sql<number>`count(*)`,
     })
     .from(pageViews)
-    .groupBy(sql`to_char(${pageViews.createdAt}, ${format})`)
-    .orderBy(sql`to_char(${pageViews.createdAt}, ${format})`);
+    .groupBy(groupExpr)
+    .orderBy(groupExpr);
 
   return NextResponse.json(rows);
 }
