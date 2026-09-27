@@ -1,17 +1,23 @@
 import { db } from "@/db";
 import { pageViews } from "@/db/schema";
 import { sql } from "drizzle-orm";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const period = searchParams.get("period") ?? "month";
+
+  const format =
+    period === "day" ? "YYYY-MM-DD" : period === "year" ? "YYYY" : "YYYY-MM";
+
   const rows = await db
     .select({
-      month: sql<string>`to_char(${pageViews.createdAt}, 'YYYY-MM')`,
+      label: sql<string>`to_char(${pageViews.createdAt}, ${format})`,
       count: sql<number>`count(*)`,
     })
     .from(pageViews)
-    .groupBy(sql`to_char(${pageViews.createdAt}, 'YYYY-MM')`)
-    .orderBy(sql`to_char(${pageViews.createdAt}, 'YYYY-MM')`);
+    .groupBy(sql`to_char(${pageViews.createdAt}, ${format})`)
+    .orderBy(sql`to_char(${pageViews.createdAt}, ${format})`);
 
   return NextResponse.json(rows);
 }
