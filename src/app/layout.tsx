@@ -16,11 +16,11 @@ export const metadata: Metadata = {
     template: "%s | Muhammad Sahdan Ramadhan",
   },
   description: "Portofolio Muhammad Sahdan Ramadhan — Software Engineer, Videographer & Gamer.",
-  metadataBase: new URL("https://portofolio-shdnn.vercel.app"),
+  metadataBase: new URL("https://ndhasss.vercel.app"),
   openGraph: {
     title: "Muhammad Sahdan Ramadhan",
     description: "Portofolio Muhammad Sahdan Ramadhan — Software Engineer, Videographer & Gamer.",
-    url: "https://portofolio-shdnn.vercel.app",
+    url: "https://ndhasss.vercel.app",
     siteName: "Portfolio Muhammad Sahdan Ramadhan",
     images: ["/og-image.jpg"],
     locale: "id_ID",
